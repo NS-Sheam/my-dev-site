@@ -1,12 +1,12 @@
 "use client";
-import { FaHamburger, FaHome } from "react-icons/fa";
-import { AiFillDatabase } from "react-icons/ai";
-import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-import { CgCommunity, CgProfile } from "react-icons/cg";
-import { FcAbout } from "react-icons/fc";
+import { FaChevronDown, FaHamburger, FaHome } from "react-icons/fa";
+// import { AiFillDatabase } from "react-icons/ai";
+// import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
+// import { CgCommunity, CgProfile } from "react-icons/cg";
+// import { FcAbout } from "react-icons/fc";
 import { GiCrossedAirFlows } from "react-icons/gi";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import webDevelopmentIcon from "../../assets/menu-icon/web-development.png";
 import cloudServiceIcon from "../../assets/menu-icon/cloud-service.png";
 import uiuxIcon from "../../assets/menu-icon/ui.png";
@@ -19,9 +19,12 @@ import teamIcon from "../../assets/menu-icon/team.png";
 import career from "../../assets/menu-icon/career.png";
 
 import Image from "next/image";
+
 const Header = () => {
   const [submenuOpen, setSubmenuOpen] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
   const menuItem = [
     {
       name: "Company",
@@ -29,17 +32,17 @@ const Header = () => {
       submenu: [
         {
           name: "About",
-          path: "/company/about",
+          path: "/about-us",
           image: aboutIcon,
         },
         {
           name: "Team",
-          path: "/company/team",
+          path: "/team",
           image: teamIcon,
         },
         {
           name: "Career",
-          path: "/company/career",
+          path: "/career",
           image: career,
         },
       ]
@@ -88,7 +91,8 @@ const Header = () => {
     {
       name: "Clients",
       path: "/clients",
-    }, {
+    },
+    {
       name: "Products",
       path: "/products",
     },
@@ -102,25 +106,39 @@ const Header = () => {
     setSubmenuOpen(submenuOpen === index ? null : index);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setSubmenuOpen(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   return (
-    <nav className="my-container flex justify-center items-center py-2 bg-bg-color fixed top-0 z-10">
+    <nav className=" my-container flex justify-center items-center py-2 bg-bg-color sticky right-0 top-0 z-10">
       <div className="navbar-start text-black">
         <Link href="/" className="btn btn-ghost normal-case text-sm md:text-xl lg:text-2xl text-white font-bold">
           QuikFrontend
         </Link>
       </div>
-      <div className="navbar-center lg:flex text-white hidden">
-        <ul className="menu menu-horizontal lg:text-2xl">
+      <div ref={menuRef} className="navbar-center lg:flex text-white hidden">
+        <ul className="flex items-center justify-between gap-3 lg:text-2xl">
           {menuItem.map((item, index) => (
-            <li className="menu-item " key={index}>
-              <span className="menu-link" onClick={() => handleSubmenuToggle(index)}>
-                {item.name}
-              </span>
+            <li className="hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer" key={index} onClick={() => handleSubmenuToggle(index)}>
+
+              {item.submenu ? <span className="flex items-center justify-center gap-2">{item.name} <FaChevronDown /></span> : <Link href={item.path}><span className="hover:bg-slate-800 rounded-md px-2 py-2"> {item.name}</span></Link>}
+
               {submenuOpen === index && item.submenu && (
                 <ul className=" menu menu-vertical text-xl absolute top-16 w-80 bg-[#322464] shadow-2xl rounded-2xl divide-y-2 divide-band-orange">
                   {item.submenu.map((subitem, subIndex) => (
-                    <li className="menu-item" key={subIndex}>
+                    <li className="menu-item" key={subIndex} onClick={() => handleSubmenuToggle(null)}>
                       <Link href={subitem.path}>
                         <Image width={25} src={subitem.image} alt={subitem.name} />
                         <span>{subitem.name}</span>

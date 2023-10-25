@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -31,11 +32,11 @@ const Banner = () => {
     ];
 
     return (
-        <section className='my-container py-10'>
-            <Carousel showArrows={false} autoPlay interval={4000} infiniteLoop showStatus={false} emulateTouch>
+        <section className='my-container pt-24'>
+            <Carousel showArrows={false} autoPlay interval={4000} infiniteLoop showStatus={false} emulateTouch showThumbs={false}>
                 {
                     carouselData.map(({ image, heading, description, button }, index) => (
-                        <div key={index} className='flex flex-col md:flex-row  justify-center items-center'>
+                        <div key={index} className='flex flex-col md:flex-row justify-center items-center'>
                             <div className="text-left space-y-4">
                                 <h1 className="text-3xl md:text-6xl font-bold text-band-orange">{heading}</h1>
                                 <p className="mt-4 text-xl md:text-2xl text-white">{description}</p>
