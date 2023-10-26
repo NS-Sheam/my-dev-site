@@ -1,7 +1,6 @@
 import React from "react";
 
 import StakingCards from "./StackingCards";
-import StackCards from "./StackCards";
 const OurServices = () => {
   return (
     <section className="my-container space-y-4 py-6">

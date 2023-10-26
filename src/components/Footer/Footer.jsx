@@ -54,7 +54,7 @@ const Footer = () => {
             <div className='grid grid-cols-1 md:grid-cols-3 bg-[#322464]'>
 
                 {
-                    footerData.map((item, index) => {
+                    footerData.map((item) => {
                         return (
                             Object.keys(item).map((key, index) => {
                                 return (

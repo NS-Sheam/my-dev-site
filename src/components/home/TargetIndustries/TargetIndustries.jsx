@@ -1,4 +1,4 @@
-import { TagCloud } from '@frank-mayer/react-tag-cloud';
+
 import React from 'react';
 import {
     FaBuilding,

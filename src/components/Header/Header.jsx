@@ -1,5 +1,5 @@
 "use client";
-import { FaChevronDown, FaHamburger, FaHome } from "react-icons/fa";
+import { FaChevronDown, FaHamburger } from "react-icons/fa";
 // import { AiFillDatabase } from "react-icons/ai";
 // import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 // import { CgCommunity, CgProfile } from "react-icons/cg";

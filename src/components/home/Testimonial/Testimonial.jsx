@@ -42,7 +42,7 @@ const Testimonial = () => {
                 loop={true}
             >
                 {
-                    carouselData.map(({ name, designation, company, image, description }, index) =>
+                    carouselData.map(({ name, image, description }, index) =>
 
                         <SwiperSlide key={index}>
                             <div
