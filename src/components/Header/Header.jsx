@@ -125,7 +125,7 @@ const Header = () => {
     <nav className=" my-container flex justify-center items-center py-2 bg-bg-color sticky right-0 top-0 z-10">
       <div className="navbar-start text-black">
         <Link href="/" className="btn btn-ghost normal-case text-sm md:text-xl lg:text-2xl text-white font-bold">
-          Devspot
+          DevSpot
         </Link>
       </div>
       <div ref={menuRef} className="navbar-center lg:flex text-white hidden">
